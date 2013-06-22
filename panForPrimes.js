@@ -1,13 +1,13 @@
 var sieve = function(latestPrime, numCollection){
   var lastElement = numCollection[numCollection.length - 1],  // Last element in the array of numbers
       firstComposite = Math.pow(latestPrime,2),               // Composites < n^2 have been eliminated already
-      increment = 2 * latestPrime;
+      increment = 2 * latestPrime,
+      indexOfLatestPrime = numCollection.indexOf(latestPrime);
 
   for (var i = 0; i <= lastElement; i += increment){
-    var indexOfNextComposite = numCollection.indexOf(firstComposite + i),
-        indexOfLatestPrime = numCollection.indexOf(latestPrime);
+    var indexOfNextComposite = numCollection.indexOf(firstComposite + i);
 
-    if (numCollection[indexOfNextComposite] !== undefined){   // Some numbers have been eliminated already, e.g. 15 is a multiple of both 3 and 5
+    if (numCollection[indexOfNextComposite]){                 // Some numbers have been eliminated already, e.g. 15 is a multiple of both 3 and 5
       numCollection.splice(indexOfNextComposite,1);           // Remove this multiple of the last found prime
     }
   }
