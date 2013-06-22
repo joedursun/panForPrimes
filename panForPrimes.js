@@ -35,4 +35,9 @@ var panForPrimes = function(range){
   return numCollection;
 }
 
-// require('fs').writeFile('primes.txt', panForPrimes(50));      // For those using node
+var getFirstNPrimes = function(N){
+  var range = Math.floor(N * (Math.log(N) + Math.log(Math.log(N)))),
+      primes = panForPrimes(range).slice(0,N);
+
+  return primes;
+}
