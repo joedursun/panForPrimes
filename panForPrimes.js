@@ -17,14 +17,9 @@ var sieve = function(latestPrime, numCollection){
   }
 };
 
-var removeEvens = function(numCollection){
-  var endPoint = 1 + numCollection.length / 2;
-  for (var i = 2; i <= endPoint; i += 1){ numCollection.splice(i,1); } // Start with 4
-}
-
 var createNumCollection = function(range){
-  var collection = [];
-  for (var i = 2; i <= range; i++) { collection.push(i); }
+  var collection = [2];
+  for (var i = 3; i <= range; i+= 2) { collection.push(i); }
   return collection;
 }
 
@@ -33,7 +28,6 @@ var panForPrimes = function(range){
       start = new Date().getTime();
   highestPivot = Math.sqrt(numCollection.length);             // Global so we don't have to pass to sieve
 
-  removeEvens(numCollection);                                 // Evens are a special case; for odd primes we can remove every other multiple from the collection
   sieve(3, numCollection);
 
   var elapsedTime = (new Date().getTime()) - start;
